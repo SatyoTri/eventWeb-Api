@@ -12,6 +12,7 @@ app.set('view engine', 'jade');
 //router
 const categoriesROuter = require('./app/api/v1/categories/router');
 const imagesROuter = require('./app/api/v1/images/router');
+const talentsRouter = require('./app/api/v1/talents/router');
 const v1 = '/api/v1';
 
 app.use(logger('dev'));
@@ -25,12 +26,13 @@ const handleErrorMiddleware = require('./app/middlewares/handle-error');
 
 app.get('/',(req,res) =>{
   res.status(200).json({
-    message: 'Welvome event'
+    message: 'Welcome event'
   });
 })
 
 app.use(v1, categoriesROuter);
 app.use(v1, imagesROuter);
+app.use(v1, talentsRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
